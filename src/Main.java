@@ -1,22 +1,6 @@
 import java.util.Scanner;
 
 public class Main {
-
-    public static int numCheck() {
-        int num = 0;
-        do {
-            try {
-                System.out.print("入力してください>>");
-                String str = new Scanner(System.in).nextLine();
-                num = Integer.parseInt(str);
-
-            } catch (NumberFormatException e) {
-                System.out.println("数字を入力してください");
-            }
-        } while (num < 0); //マイナスの値が入力された際に、再度入力を促す
-        return num;
-    }
-
     public static void main(String[] args) {
         //メインメニュー
         int flag = 0;
@@ -24,7 +8,7 @@ public class Main {
         while (flag == 0) {
             System.out.println("何をおこないますか？　1>記事の閲覧　2＞記事の投稿");
             Scanner scanner = new Scanner(System.in);
-            menuNum = numCheck();
+            menuNum = CheckInputNum.numCheck();
 
             if (menuNum == 1 || menuNum == 2) {
                 flag = 1;
