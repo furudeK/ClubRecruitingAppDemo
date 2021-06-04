@@ -1,4 +1,4 @@
 public interface PageTemplate {
-    String writeTitle(); //タイトルを記入
-    String writeBody(); //本文を記入
+    String inputTitle(); //タイトルを記入
+    String inputBody(); //本文を記入
 }

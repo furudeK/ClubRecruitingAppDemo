@@ -3,24 +3,26 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         //メインメニュー
-        int flag = 0;
-        int menuNum = 0;
-        while (flag == 0) {
-            System.out.println("何をおこないますか？　1>記事の閲覧　2＞記事の投稿");
-            Scanner scanner = new Scanner(System.in);
-            menuNum = CheckInputNum.numCheck();
+        Scanner scanner = new Scanner(System.in);
+        enum Menu{
+            VIEW,
+            POST;
+        }
 
+        int menuNum = 0;
+        while (true) {
+            System.out.println("何をおこないますか？　1>記事の閲覧　2＞記事の投稿");
+            menuNum = VerifyInputNum.numCheck(scanner);
             if (menuNum == 1 || menuNum == 2) {
-                flag = 1;
+                break;
             } else {
-                System.out.println("不正な値が入力されています！");
-                System.out.println("再度入力してください。");
+                System.out.print("不正な値が入力されています！\n再度入力してください。\n");
             }
         }
 
         switch (menuNum) {
             //記事の閲覧の場合の処理
-            case 1:
+            case 1: //FIXME caseに長々と処理を描かない
                 System.out.println("記事の閲覧をおこないます。");
                 System.out.println();
                 ArticleTopPage article = new ArticleTopPage();
@@ -28,13 +30,11 @@ public class Main {
                 break;
             //記事の投稿の場合の処理
             case 2:
-                String title, body;
-                System.out.println("記事の投稿をおこないます。");
-                System.out.println();
+                System.out.println("記事の投稿をおこないます。\n");
                 PostPage page = new PostPage();
-                title = page.writeTitle();
-                body = page.writeBody();
-                System.out.println();
+                final String title = page.inputTitle(); //FIXME もっと良い名前はないのだろうか
+                final String body = page.inputBody();
+                System.out.println(); //FIXME これは必要なのか？もっとスマートに書こう
                 System.out.println("以下の記事を投稿しました。");
                 System.out.println("タイトル：「" + title + "」");
                 System.out.println("本文：「" + body + "」");
