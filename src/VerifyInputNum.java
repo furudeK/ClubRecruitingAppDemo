@@ -1,18 +1,18 @@
-import java.util.Scanner;
-
+/*
+入力された文字列か数値化どうか判定し、
+数値の場合はtrueをそれ以外の場合はfalseを返す
+ */
 public class VerifyInputNum {
-    public static int numCheck(Scanner scanner) {
-        int num = 0;
-        while (num == 0) {
-            try {
-                System.out.print("入力してください>>");
-                String str = scanner.nextLine();
-                num = Integer.parseInt(str);
-            } catch (NumberFormatException e) {
-                System.out.println("数字を入力してください");
-            }
+    public static boolean isNumber(String str) {
+        boolean flag;
+        try {
+            Integer.parseInt(str); //入力された文字列をintに変換可能か確認
+            flag = true;
+        } catch (NumberFormatException e) {
+            System.out.println("数字を入力してください");
+            flag = false;
         }
-        return num;
+        return flag;
     }
 }
 

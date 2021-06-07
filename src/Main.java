@@ -4,32 +4,40 @@ public class Main {
     public static void main(String[] args) {
         //メインメニュー
         Scanner scanner = new Scanner(System.in);
-        enum Menu{
+        enum TopMenu {
             VIEW,
             POST;
         }
 
-        int menuNum = 0;
+        TopMenu menu;
         while (true) {
             System.out.println("何をおこないますか？　1>記事の閲覧　2＞記事の投稿");
-            menuNum = VerifyInputNum.numCheck(scanner);
-            if (menuNum == 1 || menuNum == 2) {
-                break;
-            } else {
+            System.out.print("入力してください>>");
+            String userInput = scanner.nextLine();
+            boolean verifyNum = VerifyInputNum.isNumber(userInput);
+            System.out.println(userInput);
+
+            if (!verifyNum) {
                 System.out.print("不正な値が入力されています！\n再度入力してください。\n");
+            } else {
+                if (userInput.equals("1")) {
+                    menu = TopMenu.VIEW;
+                    break;
+                } else if (userInput.equals("2")) {
+                    menu = TopMenu.POST;
+                    break;
+                }
             }
         }
 
-        switch (menuNum) {
-            //記事の閲覧の場合の処理
-            case 1: //FIXME caseに長々と処理を描かない
+        switch (menu) {
+            case VIEW -> {
                 System.out.println("記事の閲覧をおこないます。");
                 System.out.println();
                 ArticleTopPage article = new ArticleTopPage();
                 article.showArticleList();
-                break;
-            //記事の投稿の場合の処理
-            case 2:
+            }
+            case POST -> {
                 System.out.println("記事の投稿をおこないます。\n");
                 PostPage page = new PostPage();
                 final String title = page.inputTitle(); //FIXME もっと良い名前はないのだろうか
@@ -38,7 +46,7 @@ public class Main {
                 System.out.println("以下の記事を投稿しました。");
                 System.out.println("タイトル：「" + title + "」");
                 System.out.println("本文：「" + body + "」");
-                break;
+            }
         }
     }
 }
