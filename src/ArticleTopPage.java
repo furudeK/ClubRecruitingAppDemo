@@ -1,18 +1,14 @@
 import java.util.ArrayList;
+import java.io.*;
 
 class ArticleTopPage {
     ArrayList<String> articleList = new ArrayList<>();
-
-    //TODO：投稿記事を反映する(データベースとの連携？とりあえずcsv読み込みでも良いかも）
-    void getArticleList() {
-        articleList.add("記事例1");
-        articleList.add("記事例2");
-        articleList.add("記事例3");
-    }
+    String articleListCsv = "csv/article.csv";
+    File csv = new File(articleListCsv);
 
     public void showArticleList() {
-        getArticleList();
-        articleList.forEach(System.out::println);
+        ReadCSV csv = new ReadCSV();
+        csv.readCSV();
     }
 
 }

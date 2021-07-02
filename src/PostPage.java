@@ -9,9 +9,9 @@ public class PostPage implements PageTemplate {
         if (!confirmation) {
             //TODO 再入力の際は、入力前の文字を表示して、それを編集できるようにする
             if (tag.equals("Title")) {
-                inputTitle(); //タイトルの再入力を促す
+                typeTitle(); //タイトルの再入力を促す
             } else if (tag.equals("Body")) {
-                inputBody();//本文の際入力を促す
+                typeBody();//本文の際入力を促す
             }
         } else {
             System.out.println( str + "です。");
@@ -21,7 +21,7 @@ public class PostPage implements PageTemplate {
     }
 
     @Override
-    public String inputTitle() {
+    public String typeTitle() {
         String tag = "Title";
         System.out.print("タイトルを入力してください>>");
         String title = new Scanner(System.in).nextLine();
@@ -33,7 +33,7 @@ public class PostPage implements PageTemplate {
     }
 
     @Override
-    public String inputBody() {
+    public String typeBody() {
         String tag = "Body";
         System.out.print("本文を入力してください>>");
         String body = new Scanner(System.in).nextLine();

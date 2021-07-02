@@ -11,7 +11,7 @@ public class Main {
 
         TopMenu menu;
         while (true) {
-            System.out.println("何をおこないますか？　1>記事の閲覧　2＞記事の投稿");
+            System.out.println("何をおこないますか？　1 >記事の閲覧　2 ＞記事の投稿");
             System.out.print("入力してください>>");
             String userInput = scanner.nextLine();
             boolean verifyNum = VerifyInputNum.isNumber(userInput);
@@ -40,12 +40,9 @@ public class Main {
             case POST -> {
                 System.out.println("記事の投稿をおこないます。\n");
                 PostPage page = new PostPage();
-                final String title = page.inputTitle(); //FIXME もっと良い名前はないのだろうか
-                final String body = page.inputBody();
-                System.out.println(); //FIXME これは必要なのか？もっとスマートに書こう
-                System.out.println("以下の記事を投稿しました。");
-                System.out.println("タイトル：「" + title + "」");
-                System.out.println("本文：「" + body + "」");
+                final String title = page.typeTitle();
+                final String body = page.typeBody();
+                System.out.println("以下の記事を投稿しました。\n" + "タイトル：「" + title + "」\n" + "本文：「" + body + "」");
             }
         }
     }
